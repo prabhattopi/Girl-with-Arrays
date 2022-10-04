@@ -1,0 +1,50 @@
+function check(str){
+    
+    // console.log(str)
+    let num=[0];
+    let num2=1;
+    let index=0;
+    for(let i=0;i<str.length;i++){
+        if(str[i]=="L"){
+            num.splice(index,0,num2++);
+            
+        }
+        else if(str[i]=="R"){
+            num.splice(index+1,0,num2++);
+            index++;
+        }
+        
+    }
+    
+    console.log(num.join(" "))
+}
+
+
+
+function runProgram(input) {
+    input=input.trim().split("\n")
+    let str=input[1]
+    check(str)
+  
+  
+}
+if (process.env.USER === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
